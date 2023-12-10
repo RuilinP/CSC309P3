@@ -91,11 +91,11 @@ function SignupSeekerContinued() {
     };
 
     return (
-        <main class="login-signup-main">
-            <div class="login-signup-box">
+        <main className="login-signup-main">
+            <div className="login-signup-box">
                 <div>
-                    <h3 class="fw-bold">Almost Done, {account.first_name}!</h3>
-                    <p class="fs-6"><span class="fw-bold">This is optional.</span> Help us find the perfect pet for you by filling in a bit more information.</p>
+                    <h3 className="fw-bold">Almost Done, {account.first_name}!</h3>
+                    <p className="fs-6"><span className="fw-bold">This is optional.</span> Help us find the perfect pet for you by filling in a bit more information.</p>
                 </div>
 
                 <Form className="p-0" onSubmit={ (event) => handleSubmit(event) }>
@@ -171,13 +171,13 @@ function SignupSeekerContinued() {
                         }
                     </Form.Group>
 
-                    <div class="mt-4">
-                        <div class="multiple-buttons">
-                            <button class="btn btn-dark align-self-start" type="submit">Continue</button>
-                            <button class="btn btn-outline-dark align-self-start" onClick={() => navigate(`/signup/seeker/done`)}>Skip</button>
+                    <div className="mt-4">
+                        <div className="multiple-buttons">
+                            <button className="btn btn-dark align-self-start" type="submit">Continue</button>
+                            <button className="btn btn-outline-dark align-self-start" onClick={() => navigate(`/signup/seeker/done`)}>Skip</button>
                         </div>
-                        <div class="mt-1">
-                            <p class="fs-6">You can always update this information from your profile.</p>
+                        <div className="mt-1">
+                            <p className="fs-6">You can always update this information from your profile.</p>
                         </div>
                     </div>
                 </Form>

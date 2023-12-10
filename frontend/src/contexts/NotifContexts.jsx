@@ -12,19 +12,21 @@ export const NotificationProvider = ({ children }) => {
 
     const fetchNotifications = async () => {
 
-        try {
-            const response = await axios.get(`http://localhost:8000/notifications/`, {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-            });
-            const data = response.data;
-    
-            // Check if there are any notifications with 'is_read' set to false
-            const newNotifications = data.results.some(notification => !notification.is_read);
-            setHasNewNotifications(newNotifications);
-        } catch (error) {
-            console.error('Error fetching notifications:', error);
+        if (token) {
+            try {
+                const response = await axios.get(`http://localhost:8000/notifications/`, {
+                    headers: {
+                    Authorization: `Bearer ${token}`,
+                    },
+                });
+                const data = response.data;
+        
+                // Check if there are any notifications with 'is_read' set to false
+                const newNotifications = data.results.some(notification => !notification.is_read);
+                setHasNewNotifications(newNotifications);
+            } catch (error) {
+                console.error('Error fetching notifications:', error);
+            }
         }
         
     };

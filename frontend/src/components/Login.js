@@ -44,9 +44,9 @@ function Login() {
     };
 
     return (
-        <main class="login-signup-main">
-            <div class="login-signup-box">
-                <h3 class="fw-bold">Welcome Back!</h3>
+        <main className="login-signup-main">
+            <div className="login-signup-box">
+                <h3 className="fw-bold">Welcome Back!</h3>
 
                 { error ? 
                     <Alert variant="danger">
@@ -66,9 +66,9 @@ function Login() {
                     </Form.Group>
         
                     <div className="mt-1">
-                        <button class="btn btn-dark align-self-start" type="submit" onclick="showError()">Login</button>
-                        <div class="mt-1">
-                            <p class="fs-6"><span class="fw-bold">Don't have an account?</span> Sign up <span role="button" class="link-dark" onClick={() => navigate(`/signup`)}>here</span>.</p>
+                        <button className="btn btn-dark align-self-start" type="submit">Login</button>
+                        <div className="mt-1">
+                            <p className="fs-6"><span className="fw-bold">Don't have an account?</span> Sign up <span role="button" className="link-dark" onClick={() => navigate(`/signup`)}>here</span>.</p>
                         </div>
                     </div>
                 </Form>
