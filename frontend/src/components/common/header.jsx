@@ -9,11 +9,12 @@ import ClickHandlerLink from './ClickHandlerLink';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { getAccessToken, logout } from '../../utils/auth';
+import axios from 'axios';
 
 
 function Header() {
     const navigate = useNavigate();
-    const { hasNewNotifications } = useNotifications();
+    const [hasNewNotifications, setHasNewNotifications] = useState(false);
 
     const [userInfo, setUserInfo] = useState({ userType: null, userId: null });
 
@@ -46,8 +47,32 @@ function Header() {
             }
         };
 
+        const fetchNotifications = async () => {
+
+            try {
+                const response = await axios.get(`http://localhost:8000/notifications/`, {
+                    headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    },
+                });
+                const data = response.data;
+        
+                // Check if there are any notifications with 'is_read' set to false
+                let newNotifications = data.results.some(notification => !notification.is_read);
+                setHasNewNotifications(newNotifications);
+            } catch (error) {
+                console.error('Error fetching notifications:', error);
+            }
+        
+        };
+
         if (accessToken) {
             fetchUserType();
+            fetchNotifications();
+            const intervalId = setInterval(fetchNotifications, 10000); 
+
+            // Clear the interval when the component is unmounted
+            return () => clearInterval(intervalId);    
         }
         
     }, []);
