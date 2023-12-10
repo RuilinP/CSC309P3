@@ -42,11 +42,11 @@ function SignupSeeker() {
     };
 
     return (
-        <main class="login-signup-main">
-            <div class="login-signup-box">
+        <main className="login-signup-main">
+            <div className="login-signup-box">
                 <div>
-                    <h3 class="fw-bold">Create a Pet Seeker Account</h3>
-                    <p class="fs-6"><span class="fw-bold">Are you a Pet Shelter?</span> Sign up <span class="link-dark" role="button" onClick={() => { navigate(`/signup/shelter`) }}>here</span>.</p>
+                    <h3 className="fw-bold">Create a Pet Seeker Account</h3>
+                    <p className="fs-6"><span className="fw-bold">Are you a Pet Shelter?</span> Sign up <span className="link-dark" role="button" onClick={() => { navigate(`/signup/shelter`) }}>here</span>.</p>
                 </div>
 
                 <Form className="p-0" noValidate validated={validated} onSubmit={ (event) => handleSubmit(event) }>
@@ -82,10 +82,10 @@ function SignupSeeker() {
                         </Form.Control.Feedback>
                     </Form.Group>
 
-                    <div class="mt-4">
-                        <button class="btn btn-dark align-self-start" type="submit" onclick="showError()">Signup</button>
-                        <div class="mt-1">
-                            <p class="fs-6"><span class="fw-bold">Already have an account?</span> Log in <span role="button" class="link-dark" onClick={() => { navigate('/login') }}>here</span>.</p>
+                    <div className="mt-4">
+                        <button className="btn btn-dark align-self-start" type="submit" >Signup</button>
+                        <div className="mt-1">
+                            <p className="fs-6"><span className="fw-bold">Already have an account?</span> Log in <span role="button" className="link-dark" onClick={() => { navigate('/login') }}>here</span>.</p>
                         </div>
                     </div>
                 </Form>

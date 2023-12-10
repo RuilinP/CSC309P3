@@ -6,18 +6,18 @@ function Signup() {
     const navigate = useNavigate();
 
     return (
-        <main class="login-signup-main">
-            <div class="login-signup-box">
-                <h4 class="fw-bold text-center">Are you a Pet Seeker or a Pet Shelter?</h4>
+        <main className="login-signup-main">
+            <div className="login-signup-box">
+                <h4 className="fw-bold text-center">Are you a Pet Seeker or a Pet Shelter?</h4>
 
-                <div class="login-signup-form text-center">
-                    <button class="btn primary d-flex flex-column align-items-center p-3" onClick={() => { navigate('/signup/seeker') }}>
-                        <span class="fw-bold">Pet Seeker!</span>
+                <div className="login-signup-form text-center">
+                    <button className="btn primary d-flex flex-column align-items-center p-3" onClick={() => { navigate('/signup/seeker') }}>
+                        <span className="fw-bold">Pet Seeker!</span>
                         <span>I'm looking to adopt a pet.</span>
                     </button>
 
-                    <button class="btn primary d-flex flex-column align-items-center p-3" onClick={() => { navigate('/signup/shelter') }}>
-                        <span class="fw-bold">Pet Shelter!</span>
+                    <button className="btn primary d-flex flex-column align-items-center p-3" onClick={() => { navigate('/signup/shelter') }}>
+                        <span className="fw-bold">Pet Shelter!</span>
                         <span>I'm listing pets for adoption.</span>
                     </button>
                 </div>

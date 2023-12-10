@@ -46,7 +46,10 @@ function Header() {
             }
         };
 
-        fetchUserType();
+        if (accessToken) {
+            fetchUserType();
+        }
+        
     }, []);
 
     const scrollToTop = () => {

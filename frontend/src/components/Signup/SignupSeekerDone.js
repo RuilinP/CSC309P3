@@ -36,15 +36,15 @@ function SignupSeekerDone() {
     }, []);
 
     return (
-        <main class="login-signup-main">
-            <div class="login-signup-box">
-                <h3 class="fw-bold">Welcome, {account.first_name}!</h3>
+        <main className="login-signup-main">
+            <div className="login-signup-box">
+                <h3 className="fw-bold">Welcome, {account.first_name}!</h3>
 
                 <p>Your registration is complete.</p>
 
-                <div class="multiple-buttons">
-                    <button class="btn btn-dark align-self-start" onClick={() => { navigate('/pets') }}>Start Pet Seeking</button>
-                    <button class="btn btn-outline-dark align-self-start" onClick={() => { navigate('/profile/seeker') }}>View Profile</button>
+                <div className="multiple-buttons">
+                    <button className="btn btn-dark align-self-start" onClick={() => { navigate('/pets') }}>Start Pet Seeking</button>
+                    <button className="btn btn-outline-dark align-self-start" onClick={() => { navigate('/profile/seeker') }}>View Profile</button>
                 </div>
             </div>
         </main>

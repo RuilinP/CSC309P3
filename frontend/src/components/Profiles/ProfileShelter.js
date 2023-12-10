@@ -127,12 +127,12 @@ function ProfileShelter() {
     }
 
     return (
-        <main class="profile-main">
-            <div class="d-flex flex-column align-items-center gap-3">
-                <div class="profile-picture">
+        <main className="profile-main">
+            <div className="d-flex flex-column align-items-center gap-3">
+                <div className="profile-picture">
                     <img src={ account.avatar ? account.avatar : "../../assets/images/default-profile-picture.png" } alt="profile picture" />
                 </div>
-                <label for="avatar" class="btn btn-dark">
+                <label for="avatar" className="btn btn-dark">
                     Change Photo
                     <Form.Control id="avatar" className="d-none" type="file" accept="image/*" onInput={ (event) => {
                         updateAvatar(event.target.files[0]);
@@ -140,16 +140,16 @@ function ProfileShelter() {
                 </label>
             </div>
 
-            <div class="login-signup-box">
+            <div className="login-signup-box">
                 <Form className="p-0 login-signup-form" noValidate validated={validated} onSubmit={ (event) => handleSubmit(event) }>
-                    <div class="d-flex justify-content-between gap-3">
-                        <h3 class="fw-bold">Pet Shelter Profile</h3>
+                    <div className="d-flex justify-content-between gap-3">
+                        <h3 className="fw-bold">Pet Shelter Profile</h3>
                         { !isEditing ? 
-                            <button class="btn btn-dark align-self-start" onClick={() => setIsEditing(true)}>Edit</button>
+                            <button className="btn btn-dark align-self-start" onClick={() => setIsEditing(true)}>Edit</button>
                             :
-                            <div class="multiple-buttons">
-                                <button class="btn btn-dark align-self-start" onClick={() => updateAccount()}>Save</button>
-                                <button class="btn btn-outline-dark align-self-start" onClick={() => { setIsEditing(false); setAccount(oldAccount) }}>Cancel</button>
+                            <div className="multiple-buttons">
+                                <button className="btn btn-dark align-self-start" onClick={() => updateAccount()}>Save</button>
+                                <button className="btn btn-outline-dark align-self-start" onClick={() => { setIsEditing(false); setAccount(oldAccount) }}>Cancel</button>
                             </div>
                         }
                     </div>
