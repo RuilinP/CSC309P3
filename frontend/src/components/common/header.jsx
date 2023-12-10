@@ -3,7 +3,6 @@ import logo from '../../assets/images/logo.png';
 import '../../assets/styles/main.css'
 import '../../pages/styles/custom.css'
 import '../../pages/styles/fix-pos-icon.css'
-import { useNotifications } from '../../contexts/NotifContexts'
 import React, { useState, useEffect } from 'react';
 import ClickHandlerLink from './ClickHandlerLink';
 import { useNavigate } from 'react-router-dom';
