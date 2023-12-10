@@ -157,9 +157,6 @@ function SignupSeekerContinued() {
                             ['dog', 'cat', 'hamster', 'bird', 'rabbit'].map((pet) => {
                                 return <Form.Check
                                     type="checkbox"
-                                    checked={account.preferences.some((preference) =>
-                                        preference.preference === pet
-                                    )}
                                     value={pet}
                                     label={pet[0].toUpperCase() + pet.slice(1)}
                                     id={`preference-${pet}`}
