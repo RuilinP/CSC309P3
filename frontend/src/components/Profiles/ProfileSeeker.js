@@ -235,7 +235,7 @@ function ProfileSeeker() {
                             ['dog', 'cat', 'hamster', 'bird', 'rabbit'].map((pet) => {
                                 return <Form.Check
                                     readOnly={!isEditing} 
-                                    checked={Object.values(account.preferences).some((preference) =>
+                                    checked={account.preferences.some((preference) =>
                                         preference.preference === pet
                                     )}
                                     type="checkbox"
