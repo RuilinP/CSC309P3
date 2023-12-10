@@ -18,7 +18,7 @@ function Login() {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:8000/api/token/', {
+            const response = await fetch('http://142.126.176.248:8000/api/token/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
