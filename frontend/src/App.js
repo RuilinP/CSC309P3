@@ -13,7 +13,6 @@ import PetUpdate from './components/pets/update';
 import Application from './components/pet/adoption/Application';
 import ApplicationCommentPage from './pages/CommentPages/ApplicationCommentPage';
 import ApplicationCommentDetails from './pages/CommentPages/ApplicationCommentDetailsPage';
-import { NotificationProvider } from './contexts/NotifContexts';
 import NotificationPage from './pages/NotificationPages/NotificationPage';
 import ShelterDetails from './pages/ShelterDetailsPage';
 import ShelterProfile from './pages/ShelterProfilePage';
@@ -35,7 +34,6 @@ import ApplicationListPage from './pages/ApplicationPages/ApplicationListPage';
 
 function App() {
   return (
-    <NotificationProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -72,7 +70,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </NotificationProvider>
   );
 }
 
