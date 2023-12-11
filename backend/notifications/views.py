@@ -38,12 +38,27 @@ class ListNotificationsView(generics.ListAPIView):
         queryset = Notification.objects.filter(recipient=self.request.user)
 
         read_status = self.request.query_params.get('is_read')
-        if read_status is not None:
-            queryset = queryset.filter(is_read=read_status == True)
+        if read_status == 'true':
+            queryset = queryset.filter(is_read = True)
+        elif read_status == 'false':
+            queryset = queryset.filter(is_read = False)
 
         return queryset
     
     def delete(self, request, *args, **kwargs):
         # delete all notifications for the user
         Notification.objects.filter(recipient=request.user).delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)    
+        return Response(status=status.HTTP_204_NO_CONTENT)  
+          
+
+
+# return if unread exists
+class CheckUnreadNotificationsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        # Check if there are any unread notifications for the authenticated user
+        has_unread_notifications = Notification.objects.filter(recipient=request.user, is_read=False).exists()
+
+        # Return the boolean result
+        return Response({"has_unread_notifications": has_unread_notifications})

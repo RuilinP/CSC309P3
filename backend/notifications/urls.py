@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ListNotificationsView, NotificationDetailView
+from .views import ListNotificationsView, NotificationDetailView, CheckUnreadNotificationsView
 from comments.views import ApplicationCommentDetailView, ShelterCommentDetailView
 from application.views import ApplicationRetrieveUpdateStatusView
 
@@ -9,6 +9,7 @@ urlpatterns = [
     path('applications/<int:application_id>/comments/<int:comment_id>/', ApplicationCommentDetailView.as_view(), name='application-comment-detail'),
     path('shelters/<int:shelter_id>/comments/<int:comment_id>/', ShelterCommentDetailView.as_view(), name='shelter-comment-detail'),
     path('applications/<int:pk>/', ApplicationRetrieveUpdateStatusView.as_view(), name='applications-retrieve'),
+    path('notifications/check_unread/', CheckUnreadNotificationsView.as_view(), name='notifications-check-new'),
 
 
 ]

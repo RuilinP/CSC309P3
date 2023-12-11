@@ -17,6 +17,7 @@ function NotificationList() {
     const [query, setQuery] = useState({ page: 1 });
     const [totalPages, setTotalPages] = useState(1);
     const [notifications, setNotifications] = useState([]);
+    const [isUpdated, setIsUpdated] = useState(false);
     const accessToken = getAccessToken();
     const navigate = useNavigate();
     const customStyles = {
@@ -46,33 +47,32 @@ function NotificationList() {
 
     const handleFilterChange = selectedOption => {
         setFilter(selectedOption);
+        setIsUpdated(!isUpdated);
+        setQuery({ page: 1 })
     };
 
     useEffect(() => {
         const { page } = query;
 
         let url = `http://localhost:8000/notifications/?page=${page}`;
-        let method = 'OPTIONS';
 
         if (filter.value === 'read') {
             url += '&is_read=true';
         } else if (filter.value === 'unread') {
             url += '&is_read=false';
-        } else {
-            method = 'GET';
         }
 
         async function fetchNotifs() {
 
             try {
                 fetch(url, {
-                    method: method,
                     headers: {
                     'Authorization': `Bearer ${accessToken}`
                     }
                 })
                     .then(response => response.json())
                     .then(json => {
+                        console.log(accessToken);
                         setNotifications(json.results);
                         if (json.count === 0) {
                         } else {
@@ -88,7 +88,7 @@ function NotificationList() {
             fetchNotifs();
         }
 
-    }, [query, filter]);
+    }, [query, filter, isUpdated]);
     
     
     return (
@@ -102,7 +102,7 @@ function NotificationList() {
                 />
             </div>
 
-            {notifications && <NotificationThread notifications={notifications} setNotifications={setNotifications} />}
+            {notifications && <NotificationThread notifications={notifications} setNotifications={setNotifications} isUpdated={isUpdated} setIsUpdated={setIsUpdated} />}
             {notifications && 
             <div className="d-flex justify-content-center col-12 mt-4">
                 {query.page > 1 && (
