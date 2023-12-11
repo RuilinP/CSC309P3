@@ -49,16 +49,13 @@ function Header() {
         const fetchNotifications = async () => {
 
             try {
-                const response = await axios.get(`http://localhost:8000/notifications/`, {
+                const response = await axios.get(`http://localhost:8000/notifications/check_unread/`, {
                     headers: {
                     Authorization: `Bearer ${accessToken}`,
                     },
                 });
                 const data = response.data;
-        
-                // Check if there are any notifications with 'is_read' set to false
-                let newNotifications = data.results.some(notification => !notification.is_read);
-                setHasNewNotifications(newNotifications);
+                setHasNewNotifications(data.has_unread_notifications);
             } catch (error) {
                 console.error('Error fetching notifications:', error);
             }
