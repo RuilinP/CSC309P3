@@ -11,6 +11,7 @@ function SignupSeekerContinued() {
     const navigate = useNavigate();
     const [account, setAccount] = useState({
         first_name: '',
+        preferences: []
     });
     const [signupForm, setSignupForm] = useState({
         'phone_number': '',
@@ -156,9 +157,6 @@ function SignupSeekerContinued() {
                             ['dog', 'cat', 'hamster', 'bird', 'rabbit'].map((pet) => {
                                 return <Form.Check
                                     type="checkbox"
-                                    checked={Object.values(account.preferences).some((preference) =>
-                                        preference.preference === pet
-                                    )}
                                     value={pet}
                                     label={pet[0].toUpperCase() + pet.slice(1)}
                                     id={`preference-${pet}`}
