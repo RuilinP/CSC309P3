@@ -37,7 +37,7 @@ const ApplicationList = () => {
 			<ListGroup className="pt-3">
 				{
 					applications.map((application) => (
-						<ApplicationRow key={application.pet} petId={application.pet} setError={setError} />
+						<ApplicationRow key={application.pet} petId={application.pet} setError={setError} application={application} />
 					))
 				}
 			</ListGroup>
@@ -49,7 +49,7 @@ const ApplicationList = () => {
 }
 
 const ApplicationRow = (props) => {
-	const { petId, setError } = props;
+	const { petId, setError, application } = props;
 
 	const [petInfo, setPetInfo] = useState({
 		name: null
@@ -83,7 +83,7 @@ const ApplicationRow = (props) => {
 				View
 			</Button>
 			<Modal show={showModal} onHide={() => { setShowModal(false); }}>
-				<ApplicationReview petId={petInfo.id} />
+				<ApplicationReview petId={petInfo.id} applicationId={application.id} />
 			</Modal>
 
 		</ListGroup.Item>
@@ -92,6 +92,7 @@ const ApplicationRow = (props) => {
 
 ApplicationRow.propTypes = {
 	petId: propTypes.number.isRequired,
+	application: propTypes.object.isRequired,
 }
 
 export default ApplicationList;

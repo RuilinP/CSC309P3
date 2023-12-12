@@ -5,7 +5,7 @@ import { Button, Col, Container, FormControl, Image, Row, Form, ButtonGroup, Toa
 import { getAccessToken } from "../../utils/auth";
 
 const ApplicationReview = (props) => {
-	const { petId } = props;
+	const { petId, applicationId } = props;
 	const accessToken = getAccessToken();
 	const [application, setApplication] = useState({
 		"id": null, 
@@ -41,7 +41,7 @@ const ApplicationReview = (props) => {
 			try {
 				if (accessToken) {
 					const response = await axios.get(
-						`http://localhost:8000/applications/${petId}/`, {
+						`http://localhost:8000/applications/${applicationId}/`, {
 						headers: {
 							Authorization: `Bearer ${accessToken}`,
 						},
