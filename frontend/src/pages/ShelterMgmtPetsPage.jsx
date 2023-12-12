@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import ClickHandlerLink from '../components/common/ClickHandlerLink';
 import ClickHandlerButton from '../components/common/ClickHandlerButton';
 import { getAccessToken } from '../utils/auth';
+import { Link } from 'react-router-dom';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 function FlipPage(action) {
     // scroll to top
@@ -103,7 +105,10 @@ function ShelterMgPets() {
                                         <td className="d-none d-md-table-cell">{pet.specie}</td>
                                         <td className="d-none d-md-table-cell">{pet.status}</td>
                                         <td className="d-grid gap-2">
-                                            <ClickHandlerButton className={"btn btn-info"} children={'Update'} url={`/shelter/pet/update/${pet.id}`} />
+                                            <ButtonGroup>
+                                                <Button variant='info'><Link to={`/shelter/pet/update/${pet.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>Manage</Link></Button>
+                                                <Button><Link to={`/pets/${pet.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>View</Link></Button>
+                                            </ButtonGroup>
                                         </td>
                                     </tr>
                                 ))}
