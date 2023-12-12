@@ -1,7 +1,7 @@
 import axios from "axios";
 import propTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { Button, Col, Container, FormControl, Image, InputGroup, Row, Form, ButtonGroup, Toast, ToastContainer, ToastHeader } from "react-bootstrap";
+import { Button, Col, Container, FormControl, Image, Row, Form, ButtonGroup, Toast, ToastContainer } from "react-bootstrap";
 import { getAccessToken } from "../../utils/auth";
 
 const ApplicationReview = (props) => {
@@ -77,7 +77,7 @@ const ApplicationReview = (props) => {
 
 		fetchPetDetail();
 
-	}, []);
+	}, [accessToken, petId]);
 
 	const reactApplication = async (status) => {
 		try {

@@ -19,7 +19,7 @@ function ShelterProfile() {
     });
 
     const [comments, setComments] = useState([]);
-	const accessToken = getAccessToken();
+    const accessToken = getAccessToken();
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
 
@@ -27,11 +27,11 @@ function ShelterProfile() {
         const fetchInfo = async () => {
             try {
                 const response = await fetch('http://localhost:8000/accounts/check_user_type/', {
-					method: 'GET',
-					headers: {
-					'Authorization': `Bearer ${accessToken}`
-					}
-				});
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -89,7 +89,7 @@ function ShelterProfile() {
 
         fetchInfo();
 
-    }, [userId]);
+    }, [userId, accessToken, navigate]);
 
     // Concatenating address components
     const fullAddress = `${shelterInfo.address}, ${shelterInfo.city}, ${shelterInfo.state} ${shelterInfo.zip}, ${shelterInfo.country}`;
