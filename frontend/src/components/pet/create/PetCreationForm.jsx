@@ -111,7 +111,7 @@ function PetCreationForm() {
 			};
 	
 			const response = await axios.post(
-				"http://142.126.176.248:8000/pet/",
+				"http://localhost:8000/pet/",
 				updatedFormData,
 				{
 					headers: {
@@ -154,7 +154,7 @@ function PetCreationForm() {
 		async function fetchShelterData() {
 		  try {
 			if (accessToken && shelterid) { // Check if petInfo.shelter exists
-			  const response = await axios.get(`http://142.126.176.248:8000/accounts/shelters/${shelterid}`, {
+			  const response = await axios.get(`http://localhost:8000/accounts/shelters/${shelterid}`, {
 				headers: {
 				  Authorization: `Bearer ${accessToken}`,
 				},
