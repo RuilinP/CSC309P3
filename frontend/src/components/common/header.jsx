@@ -123,6 +123,9 @@ function Header() {
                                     <ClickHandlerLink url={'/shelter/manage_pets'} className={"nav-link"} children={'Animal Inventory'} />
                                 </li>
                                 <li className='nav-item'>
+                                    <ClickHandlerLink url={'/pet/application-list'} className={"nav-link"} children={'Applications'} />
+                                </li>
+                                <li className='nav-item'>
                                     <Button className='nav-link bg-transparent' onClick={(event) => { event.preventDefault(); navigate(`/blogs/`) }}>Blogs</Button>
                                 </li>
                             </ul>
