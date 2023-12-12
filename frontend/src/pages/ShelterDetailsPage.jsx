@@ -75,7 +75,7 @@ function ShelterDetails() {
         
         fetchProfileInfo();
         fetchTwoComments();
-    }, [shelterId]);
+    }, [shelterId, accessToken, navigate]);
 
     // Concatenating address components
     const fullAddress = `${shelterInfo.address}, ${shelterInfo.city}, ${shelterInfo.state} ${shelterInfo.zip}, ${shelterInfo.country}`;

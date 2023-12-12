@@ -36,7 +36,7 @@ const ShelterList = () => {
 		}
 
 		fetchShelters();
-	}, []);
+	}, [accessToken, navigate]);
 
 	return (
 		<ListGroup>
