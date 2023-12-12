@@ -31,45 +31,48 @@ import SignupSeekerDonePage from './pages/SignupPages/SignupSeekerDone';
 import ProfileShelterPage from './pages/ProfilePages/ProfileShelterPage';
 import ProfileSeekerPage from './pages/ProfilePages/ProfileSeekerPage';
 import ApplicationListPage from './pages/ApplicationPages/ApplicationListPage';
+import ListSheltersPage from './pages/ShelterPages/ListSheltersPage';
 
 function App() {
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/pets/" element={<PetList />} />
-          <Route path="/pets/:petId" element={<SinglePetInfo />} />
-          <Route path="/login/" element={<Login />} />
-          {/* ... other routes ... */}
-          <Route path="/pet/create" element={<CreatePet />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/signup/shelter" element={<SignupShelterPage />} />
-          <Route path="/signup/shelter/done" element={<SignupShelterDonePage />} />
-          <Route path="/signup/seeker" element={<SignupSeekerPage />} />
-          <Route path="/signup/seeker/continued" element={<SignupSeekerContinuedPage />} />
-          <Route path="/signup/seeker/done" element={<SignupSeekerDonePage />} />
-          <Route path="/profile/shelter/" element={<ProfileShelterPage />} />
-          <Route path="/profile/seeker/" element={<ProfileSeekerPage />} />
-          <Route path="/shelter/profile" element={<ShelterProfile />} />
-          <Route path="/shelter/manage_pets" element={<ShelterMgPets />} />
-          <Route path="/shelter/:shelterId" element={<ShelterDetails />} />
-          <Route path="/search-pets" element={<SearchPets />} />
-          <Route path="/pet/update/:petId" element={<PetUpdate />} />
-          <Route path="/shelter/pet/update/:petId" element={<PetUpdateShelter />} />
-          <Route path="/pet/application-list" element={<ApplicationListPage />} />
-          <Route path="/pet/:petId/application" element={<Application />} />
-          <Route path="/shelters/:shelterId/comments/" element={<ShelterCommentPage/>} />
-          <Route path="/shelters/:shelterId/comments/:commentId" element={<ShelterCommentDetails/>} />
-          <Route path="/applications/:applicationId/comments/" element={<ApplicationCommentPage/>} />
-          <Route path="/applications/:applicationId/comments/:commentId" element={<ApplicationCommentDetails/>} />
-          <Route path="/notifications/" element={<NotificationPage />} />
-          <Route path="/blogs/update/:blogId" element={<BlogUpdatePage />} />
-          <Route path="/blogs/create/" element={<BlogCreatePage />} />
-          <Route path="/blogs/:blogId" element={<BlogPage />} />
-          <Route path="/blogs/" element={<BlogsPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/pets/" element={<PetList />} />
+        <Route path="/pets/:petId" element={<SinglePetInfo />} />
+        <Route path="/login/" element={<Login />} />
+        {/* ... other routes ... */}
+        <Route path="/pet/create" element={<CreatePet />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/signup/shelter" element={<SignupShelterPage />} />
+        <Route path="/signup/shelter/done" element={<SignupShelterDonePage />} />
+        <Route path="/signup/seeker" element={<SignupSeekerPage />} />
+        <Route path="/signup/seeker/continued" element={<SignupSeekerContinuedPage />} />
+        <Route path="/signup/seeker/done" element={<SignupSeekerDonePage />} />
+        <Route path="/profile/shelter/" element={<ProfileShelterPage />} />
+        <Route path="/profile/seeker/" element={<ProfileSeekerPage />} />
+        <Route path="/shelter/profile" element={<ShelterProfile />} />
+        <Route path="/shelter/manage_pets" element={<ShelterMgPets />} />
+        <Route path="/shelter/:shelterId" element={<ShelterDetails />} />
+        <Route path="/search-pets" element={<SearchPets />} />
+        <Route path="/pet/update/:petId" element={<PetUpdate />} />
+        <Route path="/shelter/pet/update/:petId" element={<PetUpdateShelter />} />
+        <Route path="/pet/application-list" element={<ApplicationListPage />} />
+        <Route path="/pet/:petId/application" element={<Application />} />
+        <Route path="/shelters/:shelterId/comments/" element={<ShelterCommentPage />} />
+        <Route path="/shelters/:shelterId/comments/:commentId" element={<ShelterCommentDetails />} />
+        <Route path="/applications/:applicationId/comments/" element={<ApplicationCommentPage />} />
+        <Route path="/applications/:applicationId/comments/:commentId" element={<ApplicationCommentDetails />} />
+        <Route path="/notifications/" element={<NotificationPage />} />
+        <Route path="/blogs/update/:blogId" element={<BlogUpdatePage />} />
+        <Route path="/blogs/create/" element={<BlogCreatePage />} />
+        <Route path="/blogs/:blogId" element={<BlogPage />} />
+        <Route path="/blogs/" element={<BlogsPage />} />
+        <Route path="*" element={<NotFound />} />
+          
+        <Route path="/shelter/list" element={<ListSheltersPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

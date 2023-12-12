@@ -22,7 +22,7 @@ function ShelterDetails() {
     });
 
     const [comments, setComments] = useState([]);
-	const accessToken = getAccessToken();
+    const accessToken = getAccessToken();
 
     useEffect(() => {
         const fetchProfileInfo = async () => {
@@ -125,7 +125,7 @@ function ShelterDetails() {
                             ))}
                             {/* Learn More Button */}
                             <div className="d-flex justify-content-center mt-3 w-100">
-                                <ClickHandlerLink className={"btn btn-dark mt-4"} children={`More Reviews`} url={`/shelters/${shelterId}/comments/`}/>
+                                <ClickHandlerLink className={"btn btn-dark mt-4"} children={`More Reviews`} url={`/shelters/${shelterId}/comments/`} />
                             </div>
                         </div>
                     </section>
@@ -141,9 +141,9 @@ function ShelterDetails() {
                             <div className="col-lg-4">
                                 <ul className="list-unstyled">
                                     <li><strong>Phone:</strong> {shelterInfo.phone_number}</li>
-                                    <br/>
+                                    <br />
                                     <li><strong>Email:</strong> <a href={`mailto:${shelterInfo.email}`}>{shelterInfo.email}</a></li>
-                                    <br/>
+                                    <br />
                                     <li><strong>Address:</strong> {fullAddress}</li>
                                 </ul>
                             </div>
