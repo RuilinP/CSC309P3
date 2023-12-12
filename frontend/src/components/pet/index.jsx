@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchAccessToken, fetchSinglePet } from '../../ajax'; // Assuming ajax.js is in the same directory
 import axios from 'axios'; 
-import { Button, Navbar, Nav, Container } from 'react-bootstrap';
+import { Button, Navbar, Nav, Container, NavLink } from 'react-bootstrap';
 import { scrollToTop } from '../../assets/js/scroll';
 import { useNavigate } from 'react-router-dom';
 import Header from '../common/header';
 import Footer from '../common/footer';
 import { getAccessToken } from '../../utils/auth';
+import { Link } from 'react-router-dom';
 
 
 function SinglePetInfo() {
@@ -75,9 +76,9 @@ function SinglePetInfo() {
           if (item.includes('imgur')) {
             return item;
           } else {
-          return `/assets/images/shelter-uploads/${item}`; // Image URL construction
+            return `/assets/images/shelter-uploads/${item}`; // Image URL construction
+          }
         }
-      }
       });
   
       setProcessedList(processedList); 
@@ -117,15 +118,15 @@ function SinglePetInfo() {
               <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
                 {classList[index] === 'embed-responsive-item' ? (
                   <div className="embed-responsive embed-responsive-16by9" style={{
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginBottom: '3%',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    marginBottom: '3%',
 
-    width: '40%',
+                    width: '40%',
 
-    overflow: 'hidden'
+                    overflow: 'hidden'
 
-  }}>
+                  }}>
                     <iframe className="embed-responsive-item" src={item} allowFullScreen></iframe>
                   </div>
                 ) : (
@@ -174,7 +175,9 @@ function SinglePetInfo() {
 
                     <ul className="list-group">
                       <li className="list-group-item border-0 bg-primary text-center">
-                        <a href="chat.html" className="btn btn-dark">Send an enquiry</a>
+                        <Link to={`/pet/${petId}/application`}>
+                          <Button variant='dark'>Send an enquiry</Button>
+                        </Link>
                       </li>
                     </ul>
                   </div>
