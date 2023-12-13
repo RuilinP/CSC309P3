@@ -214,9 +214,7 @@ function SinglePetInfo() {
                     <p className="card-text text-center text-white mb-5">☎ {shelterInfo.phone_number}</p>
                     <ul className="list-group">
                       <li className="list-group-item border-0 bg-info text-center">
-                        <Link to={`/shelter/${shelterInfo.id}`}> 
-                          <Button variant='dark'>Shelter Page</Button>
-                        </Link>
+			<button className="btn btn-dark" onClick={() => navigate(`/shelter/profile`)}>Shelter Page</button>
                       </li>
                       <li className="list-group-item border-0 bg-info text-center">
                         <button className="btn btn-dark" onClick={() => navigate(`/pet/${petId}/application`)}>Apply now</button>
