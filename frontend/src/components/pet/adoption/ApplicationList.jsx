@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Image, ListGroup, Button } from "react-bootstrap";
+import { Image, ListGroup, Button, Modal } from "react-bootstrap";
 import ErrorCard from "../../ErrorCard";
 import propTypes from "prop-types";
 import { getAccessToken } from "../../../utils/auth";
+import { Link } from "react-router-dom";
+import ApplicationReview from "../../../pages/ApplicationPages/ApplicationReview";
 
 const ApplicationList = () => {
 
@@ -35,7 +37,7 @@ const ApplicationList = () => {
 			<ListGroup className="pt-3">
 				{
 					applications.map((application) => (
-						<ApplicationRow key={application.pet} petId={application.pet} setError={setError} />
+						<ApplicationRow key={application.pet} petId={application.pet} setError={setError} application={application} />
 					))
 				}
 			</ListGroup>
@@ -47,11 +49,12 @@ const ApplicationList = () => {
 }
 
 const ApplicationRow = (props) => {
-	const { petId, setError } = props;
+	const { petId, setError, application } = props;
 
 	const [petInfo, setPetInfo] = useState({
 		name: null
 	});
+	const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {
 
@@ -76,13 +79,20 @@ const ApplicationRow = (props) => {
 		<ListGroup.Item className="d-flex align-items-center">
 			<Image src="/assets/images/landing-top3.jpg" rounded width={100} height={100} className="object-fit-cover me-3" />
 			<h4>{petInfo.name}</h4>
-			<Button variant="dark" className="ms-auto">View</Button>
+			<Button variant="dark" className="ms-auto" onClick={() => { setShowModal(true) }}>
+				View
+			</Button>
+			<Modal show={showModal} onHide={() => { setShowModal(false); }}>
+				<ApplicationReview petId={petInfo.id} applicationId={application.id} />
+			</Modal>
+
 		</ListGroup.Item>
 	)
 }
 
 ApplicationRow.propTypes = {
 	petId: propTypes.number.isRequired,
+	application: propTypes.object.isRequired,
 }
 
 export default ApplicationList;

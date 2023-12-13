@@ -52,9 +52,9 @@ const AverageRating = ({ shelterId }) => {
             fetch(`http://localhost:8000/shelters/${shelterId}/comments/`, {
                 method: 'GET',
                 headers: {
-                  'Authorization': `Bearer ${accessToken}`
+                    'Authorization': `Bearer ${accessToken}`
                 }
-              })
+            })
                 .then(response => response.json())
                 .then(json => {
                     setComments(json.results);
@@ -69,7 +69,7 @@ const AverageRating = ({ shelterId }) => {
         return () => {
             window.removeEventListener('commentPosted', handleNewComment);
         };
-    }, [comments]);
+    }, []);
 
 
     return (

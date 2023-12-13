@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import ClickHandlerLink from '../components/common/ClickHandlerLink';
 import ClickHandlerButton from '../components/common/ClickHandlerButton';
 import { getAccessToken } from '../utils/auth';
+import { Link } from 'react-router-dom';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 function FlipPage(action) {
     // scroll to top
@@ -17,7 +19,7 @@ function FlipPage(action) {
 function ShelterMgPets() {
 
     const [pets, setPets] = useState([]);
-	const accessToken = getAccessToken();
+    const accessToken = getAccessToken();
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
     const [query, setQuery] = useState({ page: 1 });
@@ -30,11 +32,11 @@ function ShelterMgPets() {
         const fetchInfo = async () => {
             try {
                 const response = await fetch('http://localhost:8000/accounts/check_user_type/', {
-					method: 'GET',
-					headers: {
-					'Authorization': `Bearer ${accessToken}`
-					}
-				});
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -66,7 +68,7 @@ function ShelterMgPets() {
 
         fetchInfo();
 
-    }, [userId, query]);
+    }, [userId, query, accessToken, navigate]);
 
 
     return (
@@ -77,7 +79,7 @@ function ShelterMgPets() {
                     <section id="animal-inventory" className="my-5">
                         <div className="section-heading mb-4">
                             <h2>Animal Inventory
-                                <ClickHandlerLink url={'/pet/create'} className={"btn btn-dark btn-sm ms-3"} children={'Add a Pet'}/>
+                                <ClickHandlerLink url={'/pet/create'} className={"btn btn-dark btn-sm ms-3"} children={'Add a Pet'} />
                             </h2>
                         </div>
 
@@ -103,7 +105,10 @@ function ShelterMgPets() {
                                         <td className="d-none d-md-table-cell">{pet.specie}</td>
                                         <td className="d-none d-md-table-cell">{pet.status}</td>
                                         <td className="d-grid gap-2">
-                                            <ClickHandlerButton className={"btn btn-info"} children={'Update'} url={`/shelter/pet/update/${pet.id}`}/>
+                                            <ButtonGroup>
+                                                <Button variant='info'><Link to={`/shelter/pet/update/${pet.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>Manage</Link></Button>
+                                                <Button><Link to={`/pets/${pet.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>View</Link></Button>
+                                            </ButtonGroup>
                                         </td>
                                     </tr>
                                 ))}
