@@ -131,7 +131,7 @@ function PetUpdateShelter() {
 	
 	
 
-	const onFormSubmit = async (e) => 
+	const onFormSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.put(
@@ -177,7 +177,7 @@ function PetUpdateShelter() {
 
 
 	useEffect(() => {
-		async function fetchShelterData() 
+		async function fetchShelterData() {
 		  try {
 			if (accessToken && shelterid) { // Check if petInfo.shelter exists
 			  const response = await axios.get(`http://localhost:8000/accounts/shelters/${shelterid}`, {

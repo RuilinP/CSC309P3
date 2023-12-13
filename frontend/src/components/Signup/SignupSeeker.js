@@ -34,8 +34,9 @@ function SignupSeeker() {
                     }
                 }
             ).then((response) => {
-                login(signupForm.email, signupForm.password);
-                navigate(`/signup/seeker/continued/`);
+                login(signupForm.email, signupForm.password).then(() => {
+                    navigate(`/signup/seeker/continued/`);
+                });
             });
         }  catch(error) {
         }

@@ -39,8 +39,8 @@ function SignupShelter() {
                         'Content-Type': 'application/json',
                     }
                 }
-            ).then((response) => {
-                login(signupForm.email, signupForm.password);
+            ).then(async (response) => {
+                await login(signupForm.email, signupForm.password);
                 navigate(`/signup/shelter/done`);
             });
         }  catch(error) {
