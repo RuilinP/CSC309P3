@@ -8,13 +8,21 @@ import { getAccessToken, refreshToken } from "../../../utils/auth";
 import { useParams } from 'react-router-dom';
 import Header from "../../common/header";
 import Footer from "../../common/footer";
+import { jwtDecode } from 'jwt-decode';
 
 function PetUpdateShelter() {
 	const { petId } = useParams();
 
 	const [error, setError] = useState();
-	const [accessToken, setAccessToken] = useState('');
-	const shelterid = 1;
+	// const [accessToken, setAccessToken] = useState('');
+	const accessToken = getAccessToken();
+	let tokenUser;
+    	if (accessToken) {
+        	tokenUser = jwtDecode(accessToken); 
+    	} else {
+        	navigate(`/404`);
+    	}	
+	const shelterid = tokenUser.user_id;
 	const [shelterInfo, setShelterInfo] = useState({});
 	const ageOptions = ['Select Age', 'Baby', 'Young', 'Adult', 'Senior'];
 	const [imagePreviews, setImagePreviews] = useState([]);
@@ -43,7 +51,7 @@ function PetUpdateShelter() {
 		"characteristics": "",
 		"story": "",
 		"status": "Available",
-		"shelter": 1,
+		"shelter": tokenUser ? tokenUser.user_id : 1, 
 	});
 	const navigate = useNavigate();
 
@@ -123,18 +131,19 @@ function PetUpdateShelter() {
 	
 	
 
-	const onFormSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const response = await axios.put(
-				`http://142.126.176.248:8000/pets/${petId}/`,
-				formData,
-				{
-					headers: {
-						Authorization: `Bearer ${accessToken}`,
-					},
-				}
-			);
+	const onFormSubmit = async (e) => 
+        e.preventDefault();
+        try {
+            const response = await axios.put(
+                `http://localhost:8000/pets/${petId}/`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+            );
+
     
 			navigate(`/pets/${petId}/`);
 		} catch (e) {
@@ -152,28 +161,30 @@ function PetUpdateShelter() {
 			}));
 		}
 	}, [shelterInfo.city, shelterInfo.state]);
-	useEffect(() => {
-		async function fetchData() {
-			try {
-				setAccessToken(getAccessToken());
-			} catch (error) {
-				setError(error.message);
-			}
-		}
+
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 	  try {
+	// 		setAccessToken(getAccessToken());
+	// 	  } catch (error) {
+	// 		setError(error.message);
+	// 	  }
+	// 	}
 	
-		fetchData();
-	}, []);
+	// 	fetchData();
+	//   }, []);
+
 
 
 	useEffect(() => {
-		async function fetchShelterData() {
-			try {
-				if (accessToken && shelterid) { // Check if petInfo.shelter exists
-					const response = await axios.get(`http://142.126.176.248:8000/accounts/shelters/${shelterid}`, {
-						headers: {
-							Authorization: `Bearer ${accessToken}`,
-						},
-					});
+		async function fetchShelterData() 
+		  try {
+			if (accessToken && shelterid) { // Check if petInfo.shelter exists
+			  const response = await axios.get(`http://localhost:8000/accounts/shelters/${shelterid}`, {
+				headers: {
+				  Authorization: `Bearer ${accessToken}`,
+				},
+			  });
 			  
 					setShelterInfo(response.data);
 				}

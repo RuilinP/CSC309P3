@@ -5,12 +5,20 @@ import { useNavigate } from "react-router-dom";
 import ErrorCard from "../../ErrorCard";
 import { fetchAccessToken, fetchSinglePet } from '../../../ajax';
 import { getAccessToken, refreshToken } from "../../../utils/auth";
+import { jwtDecode } from 'jwt-decode';
 
 function PetCreationForm() {
 
 	const [error, setError] = useState();
-	const [accessToken, setAccessToken] = useState('');
-	const shelterid = 1;
+	// const [accessToken, setAccessToken] = useState('');
+	const accessToken = getAccessToken();
+	let tokenUser;
+    	if (accessToken) {
+        	tokenUser = jwtDecode(accessToken); 
+    	} else {
+        	navigate(`/404`);
+    	}	
+	const shelterid = tokenUser.user_id;
 	const [shelterInfo, setShelterInfo] = useState({});
 	const ageOptions = ['Select Age','Baby', 'Young', 'Adult', 'Senior'];
 	const [imagePreviews, setImagePreviews] = useState([]);
@@ -39,7 +47,7 @@ function PetCreationForm() {
 		"characteristics": "",
 		"story": "",
 		"status": "Available",
-		"shelter": 1,
+		"shelter": tokenUser ? tokenUser.user_id : 1, 
 	});
 	const navigate = useNavigate();
 
@@ -73,9 +81,9 @@ function PetCreationForm() {
 		}
 	
 		// Check if at least one image URL is provided in the gallery
-		if (imagePreviews.length === 0 || imagePreviews.every((url) => url.trim() === '')) {
-			throw new Error('Please provide at least one valid image URL in the gallery.');
-		}
+		// if (imagePreviews.length === 0 || imagePreviews.every((url) => url.trim() === '')) {
+		// 	throw new Error('Please provide at least one valid image URL in the gallery.');
+		// }
 	
 		return true; // Return true when all fields are present
 	};
@@ -103,7 +111,7 @@ function PetCreationForm() {
 			};
 	
 			const response = await axios.post(
-				"http://142.126.176.248:8000/pet/",
+				"http://localhost:8000/pet/",
 				updatedFormData,
 				{
 					headers: {
@@ -127,26 +135,26 @@ function PetCreationForm() {
 			}));
 		}
 	}, [shelterInfo.city, shelterInfo.state]);
-	useEffect(() => {
-		async function fetchData() {
-		  try {
-			const token = await fetchAccessToken('ruilin@gmail.com', '123');
-			setAccessToken(token);
-			localStorage.setItem('accessToken', token);
-		  } catch (error) {
-			setError(error.message);
-		  }
-		}
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 	  try {
+	// 		const token = await fetchAccessToken('ruilin@gmail.com', '123');
+	// 		setAccessToken(token);
+	// 		localStorage.setItem('accessToken', token);
+	// 	  } catch (error) {
+	// 		setError(error.message);
+	// 	  }
+	// 	}
 	
-		fetchData();
-	  }, []);
+	// 	fetchData();
+	//   }, []);
 
 
 	useEffect(() => {
 		async function fetchShelterData() {
 		  try {
 			if (accessToken && shelterid) { // Check if petInfo.shelter exists
-			  const response = await axios.get(`http://142.126.176.248:8000/accounts/shelters/${shelterid}`, {
+			  const response = await axios.get(`http://localhost:8000/accounts/shelters/${shelterid}`, {
 				headers: {
 				  Authorization: `Bearer ${accessToken}`,
 				},
