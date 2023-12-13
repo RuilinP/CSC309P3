@@ -30,7 +30,7 @@ function CommentThreads({ commentType, comments, relevant_shelterEmail }) {
                         <div>
                             <div className="d-flex justify-content-between align-items-center">
                                 <p className="mb-1">
-                                    {comment.author} <span className="small">- {new Date(comment.created_at).toLocaleTimeString()}</span>
+                                    {comment.author} <span className="small">- {new Date(comment.created_at).toLocaleString()}</span>
                                 </p>
                                 <ClickHandlerLink url={`/${commentType}/${comment.object_id}/comments/${comment.id}/`} 
                                                 children={<span className="small">details
@@ -55,7 +55,7 @@ function CommentThreads({ commentType, comments, relevant_shelterEmail }) {
                                         <div>
                                             <div className="d-flex justify-content-between align-items-center">
                                                 <p className="mb-1">
-                                                    {reply.author} <span className="small">- {new Date(reply.created_at).toLocaleTimeString()}</span>
+                                                    {reply.author} <span className="small">- {new Date(reply.created_at).toLocaleString()}</span>
                                                 </p>
                                             </div>
                                             <p className="small mb-0">
