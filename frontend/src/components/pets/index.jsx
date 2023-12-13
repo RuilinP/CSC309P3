@@ -4,12 +4,14 @@ import { scrollToTop } from '../../assets/js/scroll';
 import { useNavigate } from 'react-router-dom';
 import Header from '../common/header';
 import Footer from '../common/footer';
+import { getAccessToken } from '../../utils/auth';
 
 
 function PetList() {
   const [pets, setPets] = useState([]);
   const [error, setError] = useState(null);
-  const [accessToken, setAccessToken] = useState('');
+  // const [accessToken, setAccessToken] = useState('');
+  const accessToken = getAccessToken();
   const [age, setAge] = useState('Any');
   const [status, setStatus] = useState('Available');
   const [species, setSpecies] = useState('Any');
@@ -59,33 +61,33 @@ const [previousPageUrl, setPreviousPageUrl] = useState(null);
       }
     }
   };
-  useEffect(() => {
-    async function fetchAccessToken() {
-      try {
-        const response = await fetch('http://localhost:8000/api/token/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: '123@email.com',
-            password: '123',
-          }),
-        });
+  // useEffect(() => {
+  //   async function fetchAccessToken() {
+  //     try {
+  //       const response = await fetch('http://localhost:8000/api/token/', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({
+  //           email: '123@email.com',
+  //           password: '123',
+  //         }),
+  //       });
 
-        if (!response.ok) {
-          throw new Error('Failed to fetch access token');
-        }
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch access token');
+  //       }
 
-        const tokenData = await response.json();
-        setAccessToken(tokenData.access); // Store the access token in state
-      } catch (error) {
-        setError(error.message);
-      }
-    }
+  //       const tokenData = await response.json();
+  //       setAccessToken(tokenData.access); // Store the access token in state
+  //     } catch (error) {
+  //       setError(error.message);
+  //     }
+  //   }
 
-    fetchAccessToken();
-  }, []);
+  //   fetchAccessToken();
+  // }, []);
 
   useEffect(() => {
     async function fetchPets() {
