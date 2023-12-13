@@ -1,16 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Image, ListGroup, Button, Modal } from "react-bootstrap";
+import { Image, ListGroup, Button, Modal, Form } from "react-bootstrap";
 import ErrorCard from "../../ErrorCard";
 import propTypes from "prop-types";
 import { getAccessToken } from "../../../utils/auth";
-import { Link } from "react-router-dom";
 import ApplicationReview from "../../../pages/ApplicationPages/ApplicationReview";
 
 const ApplicationList = () => {
 
 	const [error, setError] = useState();
 	const [applications, setApplications] = useState([]);
+	const [filterStatus, setFilterStatus] = useState('');
+
+	const filteredApplications = applications.filter((application) =>
+		filterStatus ? application.status === filterStatus : true
+	);
 
 	useEffect(() => {
 		async function fetchApplications() {
@@ -34,9 +38,19 @@ const ApplicationList = () => {
 		<div className="container py-3" >
 			<h1>My Applications</h1>
 
+			<Form.Group controlId="filterStatus" className="mb-3">
+				<Form.Label>Filter by Status:</Form.Label>
+				<Form.Select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+					<option value="">All</option>
+					<option value="pending">Pending</option>
+					<option value="accepted">Accepted</option>
+					<option value="denied">Denied</option>
+				</Form.Select>
+			</Form.Group>
+
 			<ListGroup className="pt-3">
 				{
-					applications.map((application) => (
+					filteredApplications.map((application) => (
 						<ApplicationRow key={application.pet} petId={application.pet} setError={setError} application={application} />
 					))
 				}
