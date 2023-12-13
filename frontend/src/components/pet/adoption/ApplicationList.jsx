@@ -11,10 +11,23 @@ const ApplicationList = () => {
 	const [error, setError] = useState();
 	const [applications, setApplications] = useState([]);
 	const [filterStatus, setFilterStatus] = useState('');
+	const [sortOrder, setSortOrder] = useState('asc');
+
 
 	const filteredApplications = applications.filter((application) =>
 		filterStatus ? application.status === filterStatus : true
 	);
+
+	const sortedApplications = filteredApplications.sort((a, b) => {
+		const dateA = new Date(a.updated_at);
+		const dateB = new Date(b.updated_at);
+
+		if (sortOrder === 'asc') {
+			return dateA - dateB;
+		} else {
+			return dateB - dateA;
+		}
+	});
 
 	useEffect(() => {
 		async function fetchApplications() {
@@ -46,11 +59,16 @@ const ApplicationList = () => {
 					<option value="accepted">Accepted</option>
 					<option value="denied">Denied</option>
 				</Form.Select>
+				<Form.Label>Sort by update time:</Form.Label>
+				<Form.Select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+					<option value="asc">Ascending</option>
+					<option value="desc">Descending</option>
+				</Form.Select>
 			</Form.Group>
 
 			<ListGroup className="pt-3">
 				{
-					filteredApplications.map((application) => (
+					sortedApplications.map((application) => (
 						<ApplicationRow key={application.pet} petId={application.pet} setError={setError} application={application} />
 					))
 				}
