@@ -4,8 +4,8 @@ import { getAccessToken } from '../../../utils/auth';
 
 const AverageRating = ({ shelterId }) => {
     
-    const [comments, setComments] = useState([]);
     const [avgRating, setAvgRating] = useState(0);
+    const [isUpdated, setIsUpdated] = useState(false);
     const [profileImage, setProfileImage] = useState('');
     const accessToken = getAccessToken();
 
@@ -34,7 +34,7 @@ const AverageRating = ({ shelterId }) => {
     
         comments.forEach(comment => {
             if (comment.rating && !isNaN(comment.rating)) {
-                totalRating += parseInt(comment.rating, 10); // Ensuring it's an integer
+                totalRating += parseInt(comment.rating, 10); 
                 count++;
             }
         });
@@ -52,12 +52,12 @@ const AverageRating = ({ shelterId }) => {
             fetch(`http://localhost:8000/shelters/${shelterId}/comments/`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${accessToken}`
+                  'Authorization': `Bearer ${accessToken}`
                 }
-            })
+              })
                 .then(response => response.json())
                 .then(json => {
-                    setComments(json.results);
+                    setIsUpdated(!isUpdated);
                     setAvgRating(calculateAverageRating(json.results));
                 });
         };
@@ -69,7 +69,7 @@ const AverageRating = ({ shelterId }) => {
         return () => {
             window.removeEventListener('commentPosted', handleNewComment);
         };
-    }, []);
+    }, [isUpdated]);
 
 
     return (
