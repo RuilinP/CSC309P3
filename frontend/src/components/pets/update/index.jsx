@@ -89,7 +89,7 @@ function PetUpdate() {
         async function fetchPetData() {
             try {
                 if (accessToken && petId) {
-                    const response = await axios.get(`http://142.126.176.248:8000/pets/${petId}`, {
+                    const response = await axios.get(`http://127.0.0.1:8000/pets/${petId}`, {
                         headers: {
                             Authorization: `Bearer ${accessToken}`,
                         },
@@ -127,7 +127,7 @@ function PetUpdate() {
         e.preventDefault();
         try {
             const response = await axios.put(
-                `http://142.126.176.248:8000/pets/${petId}/`,
+                `http://127.0.0.1:8000/pets/${petId}/`,
                 formData,
                 {
                     headers: {
@@ -171,7 +171,7 @@ function PetUpdate() {
 		async function fetchShelterData() {
 		  try {
 			if (accessToken && shelterid) { // Check if petInfo.shelter exists
-			  const response = await axios.get(`http://142.126.176.248:8000/accounts/shelters/${shelterid}`, {
+			  const response = await axios.get(`http://127.0.0.1:8000/accounts/shelters/${shelterid}`, {
 				headers: {
 				  Authorization: `Bearer ${accessToken}`,
 				},
