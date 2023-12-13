@@ -30,7 +30,7 @@ function ReplyThreads({ comment, replies, relevant_shelterEmail }) {
                     <div className="flex-grow-1 flex-shrink-1">
                             <div className="d-flex justify-content-between align-items-center">
                                 <p className="mb-1">
-                                    {comment.author} <span className="small">- {new Date(comment.created_at).toLocaleTimeString()}</span>
+                                    {comment.author} <span className="small">- {new Date(comment.created_at).toLocaleString()}</span>
                                 </p>
                             </div>
 
@@ -53,7 +53,7 @@ function ReplyThreads({ comment, replies, relevant_shelterEmail }) {
                         <div className="flex-grow-1 flex-shrink-1">
                                 <div className="d-flex justify-content-between align-items-center">
                                     <p className="mb-1">
-                                        {reply.author} <span className="small">- {new Date(reply.created_at).toLocaleTimeString()}</span>
+                                        {reply.author} <span className="small">- {new Date(reply.created_at).toLocaleString()}</span>
                                     </p>
                                 </div>
                                 <p className="small mb-0">
