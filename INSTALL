@@ -69,6 +69,9 @@ need to be edited on the configuration of the router.
 After connected to the internet,
 ---------------------------------------------
 git clone https://github.com/RuilinP/CSC309P3|
+cd CSC309P3/backend                          |
+chmod startup.sh                             |
+source startup.sh                            |
 sudo apt update                              |
 sudo apt upgrade                             |
 sudo apt install pip3                        |

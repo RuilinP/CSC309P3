@@ -390,8 +390,8 @@ function PetUpdate() {
 									value={formData.gender}
 									required
 								>
-									<option value="male">Male</option>
-									<option value="female">Female</option>
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
 								</Form.Control>
 							</Form.Group>
 
